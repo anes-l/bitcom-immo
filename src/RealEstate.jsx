@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Moon, Sun, MapPin, Bed, Bath, Square, Phone, Mail, Calendar, Home, Building2, TrendingUp, Shield, Handshake, Eye, FileText, KeyRound } from 'lucide-react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { Moon, Sun, MapPin, Bed, Bath, Square, Phone, Mail, Calendar, Home, Building2, TrendingUp, Shield, Handshake, Eye, FileText, KeyRound, Menu, X } from 'lucide-react';
 
 // Composant pour l'animation au défilement
 const AnimatedCard = ({ children, delay = 0, className = "" }) => {
@@ -27,15 +27,15 @@ const Section = ({ id, title, children, isDark }) => {
     const baseClasses = isDark ? 'bg-gradient-to-r from-[#010133]/25 to-[#010133]/15 border-[#C8A779]/35' : 'bg-gradient-to-r from-white/25 to-[#f5f5f5]/15 border-[#010133]/35';
 
     return (
-        <section id={id} ref={ref} className="py-24 lg:py-40 relative">
+        <section id={id} ref={ref} className="py-16 lg:py-40 relative">
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8 }}
             >
-                <div className="text-center mb-16">
-                    <div className={`inline-block backdrop-blur-3xl ${baseClasses} border rounded-2xl px-8 py-6 shadow-[0_15px_45px_rgba(0,0,0,0.25)]`}>
-                        <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-black ${isDark ? 'bg-gradient-to-r from-[#C8A779] via-[#D4B98C] to-[#E5C89D]' : 'bg-gradient-to-r from-[#010133] via-[#1a1a5a] to-[#010133]'} bg-clip-text text-transparent tracking-tight`}>
+                <div className="text-center mb-12 lg:mb-16">
+                    <div className={`inline-block backdrop-blur-3xl ${baseClasses} border rounded-2xl px-6 py-4 lg:px-8 lg:py-6 shadow-[0_15px_45px_rgba(0,0,0,0.25)] mx-4`}>
+                        <h2 className={`text-3xl sm:text-5xl lg:text-6xl font-black ${isDark ? 'bg-gradient-to-r from-[#C8A779] via-[#D4B98C] to-[#E5C89D]' : 'bg-gradient-to-r from-[#010133] via-[#1a1a5a] to-[#010133]'} bg-clip-text text-transparent tracking-tight`}>
                             {title}
                         </h2>
                     </div>
@@ -61,12 +61,12 @@ const PropertyCard = ({ property, delay, isDark }) => {
             whileHover={{ y: -10 }}
             className="group"
         >
-            <div className={`backdrop-blur-3xl ${baseClasses} border rounded-3xl overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.25)] transition-all duration-500`}>
+            <div className={`backdrop-blur-3xl ${baseClasses} border rounded-3xl overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.25)] transition-all duration-300`}>
                 <div className="relative overflow-hidden h-64">
                     <img
                         src={property.image}
                         alt={property.type}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/800x600/010133/C8A779?text=Plan+Disponible"; }}
                     />
                     <div className={`absolute top-4 right-4 backdrop-blur-xl ${isDark ? 'bg-[#C8A779]/80' : 'bg-[#010133]/90'} text-white px-4 py-2 rounded-2xl font-bold text-sm`}>
@@ -105,7 +105,7 @@ const PropertyCard = ({ property, delay, isDark }) => {
                                 : '0 20px 40px -10px rgba(1, 1, 51, 0.4), 0 0 15px rgba(1, 1, 51, 0.2)'
                         }}
                         whileTap={{ scale: 0.98, y: 0 }}
-                        className={`w-full py-3.5 ${isDark ? 'bg-gradient-to-br from-[#C8A779] via-[#D4B98C] to-[#E5C89D]' : 'bg-gradient-to-br from-[#010133] via-[#1a1a5a] to-[#2d2d70]'} text-white rounded-2xl font-semibold shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-300`}
+                        className={`w-full py-3.5 ${isDark ? 'bg-gradient-to-br from-[#C8A779] via-[#D4B98C] to-[#E5C89D]' : 'bg-gradient-to-br from-[#010133] via-[#1a1a5a] to-[#2d2d70]'} text-white rounded-2xl font-semibold shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.4)] transition-all duration-200`}
                     >
                         Voir les plans
                     </motion.button>
@@ -128,7 +128,7 @@ const BenefitCard = ({ benefit, delay, isDark }) => {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay }}
             whileHover={{ scale: 1.05, y: -5, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3)' }}
-            className={`backdrop-blur-3xl ${baseClasses} border rounded-3xl p-8 shadow-[0_15px_45px_rgba(0,0,0,0.25)] text-center transition-all duration-500`}
+            className={`backdrop-blur-3xl ${baseClasses} border rounded-3xl p-8 shadow-[0_15px_45px_rgba(0,0,0,0.25)] text-center transition-all duration-300`}
         >
             <div className={`w-16 h-16 mx-auto mb-4 rounded-xl ${isDark ? 'bg-gradient-to-br from-[#C8A779]/20 to-[#D4B98C]/20' : 'bg-gradient-to-br from-[#010133]/20 to-[#1a1a5a]/20'} flex items-center justify-center`}>
                 <div className={`${isDark ? 'text-[#C8A779]' : 'text-[#010133]'} text-3xl`}>
@@ -153,7 +153,7 @@ const ProcessStepCard = ({ step, delay, isDark }) => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay }}
             whileHover={{ y: -5, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3)' }}
-            className={`backdrop-blur-3xl ${baseClasses} border rounded-3xl p-6 shadow-[0_15px_40px_rgba(0,0,0,0.25)] transition-all duration-500 flex items-start space-x-4`}
+            className={`backdrop-blur-3xl ${baseClasses} border rounded-3xl p-6 shadow-[0_15px_40px_rgba(0,0,0,0.25)] transition-all duration-300 flex items-start space-x-4`}
         >
             <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-black text-xl ${isDark ? 'bg-[#C8A779] text-[#010133]' : 'bg-[#010133] text-white'} shadow-lg`}>
                 {step.number}
@@ -168,6 +168,7 @@ const ProcessStepCard = ({ step, delay, isDark }) => {
 
 const RealEstate = () => {
     const [isDark, setIsDark] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleDarkMode = () => setIsDark(!isDark);
 
@@ -190,6 +191,7 @@ const RealEstate = () => {
 
     const handleScroll = (e, href) => {
         e.preventDefault();
+        setIsMenuOpen(false);
         const element = document.querySelector(href);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -291,36 +293,79 @@ const RealEstate = () => {
             >
                 <motion.div
                     whileHover={{ scale: 1.01 }}
-                    className={`backdrop-blur-3xl ${isDark ? 'bg-[#010133]/25 border-[#C8A779]/40' : 'bg-white/25 border-[#010133]/40'} border rounded-2xl px-4 sm:px-10 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-500`}
+                    className={`backdrop-blur-3xl ${isDark ? 'bg-[#010133]/85 border-[#C8A779]/40' : 'bg-white/85 border-[#010133]/40'} border rounded-2xl px-6 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300`}
                 >
-                    <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-r from-[#C8A779]/10 via-[#010133]/5 to-[#C8A779]/10' : 'bg-gradient-to-r from-[#010133]/8 via-[#C8A779]/4 to-[#010133]/8'} rounded-2xl`} />
-                    <div className="flex gap-3 sm:gap-5 items-center relative z-10 whitespace-nowrap py-1">
-                        {navLinks.map((link, i) => (
-                            <motion.a
-                                key={link.name}
-                                href={link.href}
-                                onClick={(e) => handleScroll(e, link.href)}
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.08 }}
-                                whileHover={{ scale: 1.05 }}
-                                className={`text-xs sm:text-sm font-medium ${isDark ? 'text-slate-200 hover:text-[#C8A779]' : 'text-slate-900 hover:text-[#010133]'} transition-colors whitespace-nowrap px-2`}
-                            >
-                                {link.name}
-                            </motion.a>
-                        ))}
+                    <div className="flex gap-5 items-center relative z-10">
+                        {/* Desktop Nav */}
+                        <div className="hidden md:flex gap-5 items-center">
+                            {navLinks.map((link, i) => (
+                                <motion.a
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={(e) => handleScroll(e, link.href)}
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.08 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    className={`text-sm font-medium ${isDark ? 'text-slate-200 hover:text-[#C8A779]' : 'text-slate-900 hover:text-[#010133]'} transition-colors whitespace-nowrap px-2`}
+                                >
+                                    {link.name}
+                                </motion.a>
+                            ))}
+                        </div>
+
+                        {/* Mobile Nav Toggle */}
+                        <button
+                            className="md:hidden p-1"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                            {isMenuOpen ? (
+                                <X className={`w-6 h-6 ${isDark ? 'text-[#C8A779]' : 'text-[#010133]'}`} />
+                            ) : (
+                                <Menu className={`w-6 h-6 ${isDark ? 'text-[#C8A779]' : 'text-[#010133]'}`} />
+                            )}
+                        </button>
 
                         <motion.button
                             onClick={toggleDarkMode}
                             whileHover={{ scale: 1.15, rotate: 180 }}
                             whileTap={{ scale: 0.95 }}
-                            className={`ml-1 p-1.5 rounded-full backdrop-blur-xl ${isDark ? 'bg-gradient-to-br from-[#C8A779]/20 to-[#C8A779]/30 border-[#C8A779]/30' : 'bg-gradient-to-br from-[#010133]/20 to-[#010133]/30 border-[#010133]/30'} border transition-all duration-500 flex-shrink-0`}
+                            className={`ml-1 p-1.5 rounded-full backdrop-blur-xl ${isDark ? 'bg-gradient-to-br from-[#C8A779]/20 to-[#C8A779]/30 border-[#C8A779]/30' : 'bg-gradient-to-br from-[#010133]/20 to-[#010133]/30 border-[#010133]/30'} border transition-all duration-300 flex-shrink-0`}
                         >
                             {isDark ? <Sun className="w-3.5 h-3.5 text-[#C8A779]" /> : <Moon className="w-3.5 h-3.5 text-[#010133]" />}
                         </motion.button>
                     </div>
                 </motion.div>
             </motion.nav>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="fixed inset-0 z-40 pt-24 px-4 bg-black/60 backdrop-blur-xl md:hidden"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        <div
+                            className={`flex flex-col gap-4 p-6 rounded-3xl ${isDark ? 'bg-[#010133]/90 border border-[#C8A779]/30' : 'bg-white/90 border border-[#010133]/30'}`}
+                            onClick={e => e.stopPropagation()}
+                        >
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={(e) => handleScroll(e, link.href)}
+                                    className={`text-lg font-medium py-2 border-b ${isDark ? 'text-slate-200 border-[#C8A779]/20' : 'text-slate-900 border-[#010133]/20'}`}
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Hero Section (Full Background Image) */}
             <section id="hero" className="h-screen relative flex items-center justify-center text-center">
@@ -356,7 +401,7 @@ const RealEstate = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black mb-4 sm:mb-6 tracking-tighter leading-tight"
+                        className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-4 sm:mb-6 tracking-tighter leading-tight"
                     >
                         {/* Nouveau gradient de titre (Navy/Gold) */}
                         <span className={`bg-gradient-to-r from-white via-[#C8A779] to-[#C8A779] bg-clip-text text-transparent drop-shadow-lg`}>
@@ -379,7 +424,7 @@ const RealEstate = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.1 }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
+                        className="flex flex-col sm:flex-row gap-4 justify-center mt-8 sm:mt-12"
                     >
                         {/* Bouton secondaire (Glassy) */}
                         <motion.button
@@ -392,7 +437,7 @@ const RealEstate = () => {
                             }}
                             whileTap={{ scale: 0.98, y: 0 }}
                             onClick={(e) => handleScroll(e, '#properties')}
-                            className={`px-8 py-4 backdrop-blur-2xl ${isDark ? 'bg-[#C8A779]/15 border-[#C8A779]/50 text-[#C8A779]' : 'bg-[#010133]/15 border-[#010133]/60 text-white'} border-2 rounded-2xl font-semibold transition-all shadow-[0_8px_30px_rgba(0,0,0,0.25)]`}
+                            className={`px-8 py-4 backdrop-blur-2xl ${isDark ? 'bg-[#C8A779]/15 text-[#C8A779]' : 'bg-[#010133]/15 text-white'} rounded-2xl font-semibold transition-all duration-200 shadow-[0_8px_30px_rgba(0,0,0,0.25)]`}
                         >
                             Explorer les Biens
                         </motion.button>
@@ -408,7 +453,7 @@ const RealEstate = () => {
                             }}
                             whileTap={{ scale: 0.98, y: 0 }}
                             onClick={(e) => handleScroll(e, '#contact')}
-                            className={`px-8 py-4 ${buttonGradientPrimary} text-white rounded-2xl font-semibold relative overflow-hidden group transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.35)]`}
+                            className={`px-8 py-4 ${buttonGradientPrimary} text-white rounded-2xl font-semibold relative overflow-hidden group transition-all duration-200 shadow-[0_10px_40px_rgba(0,0,0,0.35)]`}
                         >
                             <span className="relative z-10">Réserver une visite</span>
                         </motion.button>
@@ -462,7 +507,7 @@ const RealEstate = () => {
             {/* Properties */}
             <Section id="properties" title="Nos Unités Disponibles" isDark={isDark}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {properties.map((property, i) => (
                             <PropertyCard key={property.id} property={property} delay={i * 0.2} isDark={isDark} />
                         ))}
@@ -473,7 +518,7 @@ const RealEstate = () => {
             {/* New Section: Processus d'Achat (Glassy Cards) */}
             <Section id="process" title="Votre Accès au Luxe : Le Processus" isDark={isDark}>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {processSteps.map((step, i) => (
                             <ProcessStepCard key={step.number} step={step} delay={i * 0.1} isDark={isDark} />
                         ))}
@@ -484,7 +529,7 @@ const RealEstate = () => {
             {/* Benefits */}
             <Section id="benefits" title="Pourquoi Bitcom" isDark={isDark}>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {benefits.map((benefit, i) => (
                             <BenefitCard key={benefit.title} benefit={benefit} delay={i * 0.1} isDark={isDark} />
                         ))}
@@ -512,7 +557,7 @@ const RealEstate = () => {
                                             : '0 12px 30px -5px rgba(1, 1, 51, 0.3), 0 0 10px rgba(1, 1, 51, 0.15)'
                                     }}
                                     whileTap={{ scale: 0.98, y: 0 }}
-                                    className={`flex items-center gap-2 px-6 py-3 ${isDark ? 'bg-[#C8A779]/15 border-[#C8A779]/50 text-[#C8A779]' : 'bg-[#010133]/15 border-[#010133]/60 text-[#010133]'} border-2 rounded-2xl font-semibold backdrop-blur-2xl transition-all duration-300 shadow-[0_8px_25px_rgba(0,0,0,0.2)]`}
+                                    className={`flex items-center gap-2 px-6 py-3 ${isDark ? 'bg-[#C8A779]/15 border-[#C8A779]/50 text-[#C8A779]' : 'bg-[#010133]/15 border-[#010133]/60 text-[#010133]'} border-2 rounded-2xl font-semibold backdrop-blur-2xl transition-all duration-200 shadow-[0_8px_25px_rgba(0,0,0,0.2)]`}
                                 >
                                     <Phone className="w-4 h-4" />
                                     +213 XXX XXX XXX
@@ -527,7 +572,7 @@ const RealEstate = () => {
                                             : '0 12px 30px -5px rgba(1, 1, 51, 0.3), 0 0 10px rgba(1, 1, 51, 0.15)'
                                     }}
                                     whileTap={{ scale: 0.98, y: 0 }}
-                                    className={`flex items-center gap-2 px-6 py-3 ${isDark ? 'bg-[#C8A779]/15 border-[#C8A779]/50 text-[#C8A779]' : 'bg-[#010133]/15 border-[#010133]/60 text-[#010133]'} border-2 rounded-2xl font-semibold backdrop-blur-2xl transition-all duration-300 shadow-[0_8px_25px_rgba(0,0,0,0.2)]`}
+                                    className={`flex items-center gap-2 px-6 py-3 ${isDark ? 'bg-[#C8A779]/15 border-[#C8A779]/50 text-[#C8A779]' : 'bg-[#010133]/15 border-[#010133]/60 text-[#010133]'} border-2 rounded-2xl font-semibold backdrop-blur-2xl transition-all duration-200 shadow-[0_8px_25px_rgba(0,0,0,0.2)]`}
                                 >
                                     <Mail className="w-4 h-4" />
                                     contact@bitcom.dz
@@ -543,7 +588,7 @@ const RealEstate = () => {
                                         : '0 25px 50px -10px rgba(1, 1, 51, 0.5), 0 0 25px rgba(1, 1, 51, 0.3)'
                                 }}
                                 whileTap={{ scale: 0.98, y: 0 }}
-                                className={`px-10 py-5 ${buttonGradientPrimary} text-white rounded-2xl font-bold text-lg shadow-[0_15px_50px_rgba(0,0,0,0.4)] transition-all duration-300`}
+                                className={`px-10 py-5 ${buttonGradientPrimary} text-white rounded-2xl font-bold text-lg shadow-[0_15px_50px_rgba(0,0,0,0.4)] transition-all duration-200`}
                             >
                                 <Calendar className="w-5 h-5 inline mr-2" />
                                 Planifier une Consultation
