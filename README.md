@@ -1,65 +1,71 @@
-# Bitcom Immobilière - Site Immobilier
+# Bitcom Immobilière
 
-Site web premium pour "Bitcom Immobilière" avec design moderne, animations fluides et mode sombre.
+Site web premium pour une résidence immobilière moderne, développé avec React, Vite et Framer Motion.
 
-## 🚀 Technologies
+## 🌟 Caractéristiques
 
-- **React 18** - Bibliothèque UI
-- **Vite** - Build tool rapide
-- **Framer Motion** - Animations fluides
-- **Tailwind CSS** - Styling moderne
-- **Lucide React** - Icônes
+- **Design Moderne** : Interface élégante avec effets glassmorphism et animations fluides
+- **Mode Sombre** : Basculement facile entre les thèmes clair et sombre
+- **Animations Fluides** : Utilisation de Framer Motion pour des transitions douces
+- **Responsive** : Optimisé pour tous les appareils
+- **Performance** : Build rapide avec Vite
+
+## 🎨 Palette de Couleurs
+
+- **Navy** : `#010133` - Couleur principale
+- **Gold** : `#C8A779` - Couleur d'accent
+
+## 🛠️ Technologies Utilisées
+
+- React 18
+- Vite
+- Framer Motion
+- Tailwind CSS
+- Lucide React (icônes)
+- PostCSS
 
 ## 📦 Installation
 
 ```bash
+# Cloner le repository
+git clone https://github.com/votre-username/bitcom-immobiliere.git
+
+# Installer les dépendances
 npm install
-```
 
-## 🛠️ Développement
-
-Lancer le serveur de développement :
-
-```bash
+# Lancer le serveur de développement
 npm run dev
 ```
 
-Le site sera accessible sur `http://localhost:3000`
+## 🚀 Scripts Disponibles
 
-## 🏗️ Build Production
+- `npm run dev` - Lance le serveur de développement
+- `npm run build` - Crée le build de production
+- `npm run preview` - Prévisualise le build de production
 
-```bash
-npm run build
-```
+## 📱 Sections du Site
 
-## 🎨 Fonctionnalités
+1. **Hero** - Section d'accueil avec image de fond immersive
+2. **Concept Architectural** - Présentation de la résidence
+3. **Unités Disponibles** - Cartes des appartements F3, F4 et F5
+4. **Processus d'Achat** - Étapes pour devenir propriétaire
+5. **Avantages** - Points forts de la résidence
+6. **Contact** - Formulaire de contact et informations
 
-- ✨ Design glassmorphique moderne
-- 🌓 Mode sombre/clair
-- 🎬 Animations au scroll (Framer Motion)
-- 📱 Responsive design
-- 🏠 Catalogue de propriétés
-- 📞 Section contact interactive
-- 🎯 Navigation fluide
+## 🎯 Fonctionnalités Clés
 
-## 📁 Structure du Projet
+- Navigation fluide avec défilement animé
+- Cartes property avec effets hover
+- Glassmorphisme renforcé sur tous les éléments
+- Boutons et éléments UI en forme squircle (rounded-2xl)
+- Ombres profondes et effets lumineux au hover
+- Gradients riches à 3 couleurs
 
-```
-immo-project/
-├── src/
-│   ├── RealEstate.jsx    # Composant principal
-│   ├── main.jsx          # Point d'entrée
-│   └── index.css         # Styles globaux
-├── index.html            # HTML principal
-├── package.json          # Dépendances
-├── vite.config.js        # Configuration Vite
-└── tailwind.config.js    # Configuration Tailwind
-```
+## 📄 Licence
 
-## 📧 Contact
+© 2025 Bitcom Immobilière - Tous droits réservés
 
-Pour toute question concernant le projet, contactez contact@bitcom.dz
+## 👤 Contact
 
----
-
-© 2025 Bitcom Immobilière • Tous droits réservés
+Email: contact@bitcom.dz  
+Téléphone: +213 XXX XXX XXX
