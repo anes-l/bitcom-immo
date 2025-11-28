@@ -256,7 +256,7 @@ const RealEstate = () => {
         : 'bg-gradient-to-br from-[#010133] via-[#1a1a5a] to-[#2d2d70]';
 
     return (
-        <div className={`min-h-screen ${isDark ? baseBgDark : baseBgLight} ${isDark ? 'text-slate-100' : 'text-slate-900'} overflow-x-hidden relative transition-colors duration-500`} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+        <div className={`w-full min-h-screen ${isDark ? baseBgDark : baseBgLight} ${isDark ? 'text-slate-100' : 'text-slate-900'} overflow-x-hidden relative transition-colors duration-500`} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
 
             {/* Custom Styles for deep shadows */}
             <style>{`
@@ -293,11 +293,16 @@ const RealEstate = () => {
             >
                 <motion.div
                     whileHover={{ scale: 1.01 }}
-                    className={`backdrop-blur-3xl ${isDark ? 'bg-[#010133]/85 border-[#C8A779]/40' : 'bg-white/85 border-[#010133]/40'} border rounded-2xl px-6 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300`}
+                    className={`backdrop-blur-3xl ${isDark ? 'bg-[#010133]/85 border-[#C8A779]/40' : 'bg-white/85 border-[#010133]/40'} border rounded-2xl px-4 md:px-6 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 w-full md:w-auto`}
                 >
-                    <div className="flex gap-5 items-center relative z-10">
+                    <div className="flex gap-2 md:gap-5 items-center relative z-10 justify-between md:justify-start">
+                        {/* Logo */}
+                        <a href="#" onClick={(e) => handleScroll(e, '#hero')} className="flex-shrink-0">
+                            <img src="/logo.png" alt="Bitcom Logo" className="h-8 md:h-10 w-auto object-contain" />
+                        </a>
+
                         {/* Desktop Nav */}
-                        <div className="hidden md:flex gap-5 items-center">
+                        <div className="hidden lg:flex gap-3 xl:gap-5 items-center">
                             {navLinks.map((link, i) => (
                                 <motion.a
                                     key={link.name}
@@ -307,7 +312,7 @@ const RealEstate = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: i * 0.08 }}
                                     whileHover={{ scale: 1.05 }}
-                                    className={`text-sm font-medium ${isDark ? 'text-slate-200 hover:text-[#C8A779]' : 'text-slate-900 hover:text-[#010133]'} transition-colors whitespace-nowrap px-2`}
+                                    className={`text-sm font-medium ${isDark ? 'text-slate-200 hover:text-[#C8A779]' : 'text-slate-900 hover:text-[#010133]'} transition-colors whitespace-nowrap px-1 xl:px-2`}
                                 >
                                     {link.name}
                                 </motion.a>
@@ -316,21 +321,22 @@ const RealEstate = () => {
 
                         {/* Mobile Nav Toggle */}
                         <button
-                            className="md:hidden p-1"
+                            className="lg:hidden p-1 bg-transparent border-0"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             {isMenuOpen ? (
-                                <X className={`w-6 h-6 ${isDark ? 'text-[#C8A779]' : 'text-[#010133]'}`} />
+                                <X className={`w-5 h-5 md:w-6 md:h-6 ${isDark ? 'text-[#C8A779]' : 'text-[#010133]'}`} />
                             ) : (
-                                <Menu className={`w-6 h-6 ${isDark ? 'text-[#C8A779]' : 'text-[#010133]'}`} />
+                                <Menu className={`w-5 h-5 md:w-6 md:h-6 ${isDark ? 'text-[#C8A779]' : 'text-[#010133]'}`} />
                             )}
                         </button>
 
+                        {/* Desktop Theme Toggle */}
                         <motion.button
                             onClick={toggleDarkMode}
                             whileHover={{ scale: 1.15, rotate: 180 }}
                             whileTap={{ scale: 0.95 }}
-                            className={`ml-1 p-1.5 rounded-full backdrop-blur-xl ${isDark ? 'bg-gradient-to-br from-[#C8A779]/20 to-[#C8A779]/30 border-[#C8A779]/30' : 'bg-gradient-to-br from-[#010133]/20 to-[#010133]/30 border-[#010133]/30'} border transition-all duration-300 flex-shrink-0`}
+                            className="hidden lg:block ml-1 p-1.5 rounded-full backdrop-blur-xl bg-transparent border-0 transition-all duration-300 flex-shrink-0"
                         >
                             {isDark ? <Sun className="w-3.5 h-3.5 text-[#C8A779]" /> : <Moon className="w-3.5 h-3.5 text-[#010133]" />}
                         </motion.button>
@@ -339,13 +345,13 @@ const RealEstate = () => {
             </motion.nav>
 
             {/* Mobile Menu Overlay */}
-            <AnimatePresence>
+            < AnimatePresence >
                 {isMenuOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 pt-24 px-4 bg-black/60 backdrop-blur-xl md:hidden"
+                        className="fixed inset-0 z-40 pt-24 px-4 bg-black/60 backdrop-blur-xl lg:hidden"
                         onClick={() => setIsMenuOpen(false)}
                     >
                         <div
@@ -362,15 +368,34 @@ const RealEstate = () => {
                                     {link.name}
                                 </a>
                             ))}
+                            {/* Mobile Theme Toggle */}
+                            <motion.button
+                                onClick={toggleDarkMode}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className={`flex items-center justify-center gap-3 text-lg font-medium py-3 rounded-xl ${isDark ? 'bg-[#C8A779]/10 text-[#C8A779]' : 'bg-[#010133]/10 text-[#010133]'} transition-all duration-300 mt-2`}
+                            >
+                                {isDark ? (
+                                    <>
+                                        <Sun className="w-5 h-5" />
+                                        <span>Mode clair</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Moon className="w-5 h-5" />
+                                        <span>Mode sombre</span>
+                                    </>
+                                )}
+                            </motion.button>
                         </div>
                     </motion.div>
                 )}
-            </AnimatePresence>
+            </AnimatePresence >
 
             {/* Hero Section (Full Background Image) */}
-            <section id="hero" className="h-screen relative flex items-center justify-center text-center">
+            < section id="hero" className="h-screen relative flex items-center justify-center text-center" >
                 {/* Background Image Container */}
-                <div className="absolute inset-0 overflow-hidden">
+                < div className="absolute inset-0 overflow-hidden" >
                     <img
                         src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop"
                         alt="Intérieur d'un appartement de luxe"
@@ -379,7 +404,7 @@ const RealEstate = () => {
                     />
                     {/* Overlay for Glass effect and readability */}
                     <div className={`absolute inset-0 ${isDark ? 'bg-[#010133]/60 backdrop-blur-md' : 'bg-black/40 backdrop-blur-sm'}`}></div>
-                </div>
+                </div >
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -401,7 +426,7 @@ const RealEstate = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black mb-4 sm:mb-6 tracking-tighter leading-tight"
+                        className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black mb-4 sm:mb-6 tracking-tighter leading-tight px-4"
                     >
                         {/* Nouveau gradient de titre (Navy/Gold) */}
                         <span className={`bg-gradient-to-r from-white via-[#C8A779] to-[#C8A779] bg-clip-text text-transparent drop-shadow-lg`}>
@@ -413,7 +438,7 @@ const RealEstate = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.7 }}
-                        className="text-xl md:text-3xl mb-4 font-light text-white drop-shadow-lg"
+                        className="text-base sm:text-xl md:text-2xl lg:text-3xl mb-4 font-light text-white drop-shadow-lg px-4"
                     >
                         <span className="text-transparent bg-gradient-to-r from-[#C8A779] to-[#D4B98C] bg-clip-text">
                             Prestige & Investissement
@@ -437,7 +462,7 @@ const RealEstate = () => {
                             }}
                             whileTap={{ scale: 0.98, y: 0 }}
                             onClick={(e) => handleScroll(e, '#properties')}
-                            className={`px-8 py-4 backdrop-blur-2xl ${isDark ? 'bg-[#C8A779]/15 text-[#C8A779]' : 'bg-[#010133]/15 text-white'} rounded-2xl font-semibold transition-all duration-200 shadow-[0_8px_30px_rgba(0,0,0,0.25)]`}
+                            className={`px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base backdrop-blur-2xl ${isDark ? 'bg-[#C8A779]/15 text-[#C8A779]' : 'bg-[#010133]/15 text-white'} rounded-2xl font-semibold transition-all duration-200 shadow-[0_8px_30px_rgba(0,0,0,0.25)]`}
                         >
                             Explorer les Biens
                         </motion.button>
@@ -453,16 +478,16 @@ const RealEstate = () => {
                             }}
                             whileTap={{ scale: 0.98, y: 0 }}
                             onClick={(e) => handleScroll(e, '#contact')}
-                            className={`px-8 py-4 ${buttonGradientPrimary} text-white rounded-2xl font-semibold relative overflow-hidden group transition-all duration-200 shadow-[0_10px_40px_rgba(0,0,0,0.35)]`}
+                            className={`px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base ${buttonGradientPrimary} text-white rounded-2xl font-semibold relative overflow-hidden group transition-all duration-200 shadow-[0_10px_40px_rgba(0,0,0,0.35)]`}
                         >
                             <span className="relative z-10">Réserver une visite</span>
                         </motion.button>
                     </motion.div>
                 </motion.div>
-            </section>
+            </section >
 
             {/* Project Overview */}
-            <Section id="project" title="Le Concept Architectural" isDark={isDark}>
+            < Section id="project" title="Le Concept Architectural" isDark={isDark} >
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <AnimatedCard>
                         <div className={`backdrop-blur-3xl ${isDark ? 'bg-gradient-to-br from-[#010133]/25 to-[#010133]/15 border-[#C8A779]/40' : 'bg-gradient-to-br from-white/25 to-[#f5f5f5]/15 border-[#010133]/40'} border rounded-3xl p-8 lg:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.3)]`}>
@@ -502,10 +527,10 @@ const RealEstate = () => {
                         </div>
                     </AnimatedCard>
                 </div>
-            </Section>
+            </Section >
 
             {/* Properties */}
-            <Section id="properties" title="Nos Unités Disponibles" isDark={isDark}>
+            < Section id="properties" title="Nos Unités Disponibles" isDark={isDark} >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {properties.map((property, i) => (
@@ -513,10 +538,10 @@ const RealEstate = () => {
                         ))}
                     </div>
                 </div>
-            </Section>
+            </Section >
 
             {/* New Section: Processus d'Achat (Glassy Cards) */}
-            <Section id="process" title="Votre Accès au Luxe : Le Processus" isDark={isDark}>
+            < Section id="process" title="Votre Accès au Luxe : Le Processus" isDark={isDark} >
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {processSteps.map((step, i) => (
@@ -524,10 +549,10 @@ const RealEstate = () => {
                         ))}
                     </div>
                 </div>
-            </Section>
+            </Section >
 
             {/* Benefits */}
-            <Section id="benefits" title="Pourquoi Bitcom" isDark={isDark}>
+            < Section id="benefits" title="Pourquoi Bitcom" isDark={isDark} >
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {benefits.map((benefit, i) => (
@@ -535,10 +560,10 @@ const RealEstate = () => {
                         ))}
                     </div>
                 </div>
-            </Section>
+            </Section >
 
             {/* Contact */}
-            <Section id="contact" title="Contactez Notre Équipe" isDark={isDark}>
+            < Section id="contact" title="Contactez Notre Équipe" isDark={isDark} >
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <AnimatedCard delay={0.2}>
                         <div className={`backdrop-blur-3xl ${isDark ? 'bg-gradient-to-br from-[#010133]/25 to-[#010133]/15 border-[#C8A779]/40' : 'bg-gradient-to-br from-white/25 to-[#f5f5f5]/15 border-[#010133]/40'} border rounded-3xl p-8 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.3)] text-center`}>
@@ -596,17 +621,17 @@ const RealEstate = () => {
                         </div>
                     </AnimatedCard>
                 </div>
-            </Section>
+            </Section >
 
             {/* Footer */}
-            <footer className="py-16 text-center relative z-10">
+            < footer className="py-16 text-center relative z-10" >
                 <div className={`backdrop-blur-3xl ${isDark ? 'bg-gradient-to-r from-[#010133]/25 to-[#010133]/15 border-[#C8A779]/40' : 'bg-gradient-to-r from-white/25 to-[#f5f5f5]/15 border-[#010133]/40'} border rounded-2xl px-8 py-4 inline-block shadow-[0_8px_30px_rgba(0,0,0,0.25)]`}>
                     <p className={`${isDark ? 'text-slate-400' : 'text-slate-600'} text-sm`}>
                         © 2025 Bitcom Immobilière • Tous droits réservés
                     </p>
                 </div>
-            </footer>
-        </div>
+            </footer >
+        </div >
     );
 };
 
