@@ -248,7 +248,7 @@ const RealEstate = () => {
         { number: 4, icon: <KeyRound />, title: 'Remise des Clés & Emménagement', desc: 'Devenir propriétaire et emménager dans votre nouveau foyer.' }
     ];
 
-    // Palette de couleurs Bitcom (#010133 Navy / #C8A779 Gold)
+    // Palette de couleurs Azure Résidences (#010133 Navy / #C8A779 Gold)
     const baseBgLight = 'bg-gray-50';
     const baseBgDark = 'bg-[#010133]';
     const buttonGradientPrimary = isDark
@@ -298,7 +298,7 @@ const RealEstate = () => {
                     <div className="flex gap-2 md:gap-5 items-center relative z-10 justify-between md:justify-start">
                         {/* Logo */}
                         <a href="#" onClick={(e) => handleScroll(e, '#hero')} className="flex-shrink-0">
-                            <img src="/logo.png" alt="Bitcom Logo" className="h-8 md:h-10 w-auto object-contain" />
+                            <img src="/logo.png" alt="Azure Résidences Logo" className="h-8 md:h-10 w-auto object-contain" />
                         </a>
 
                         {/* Desktop Nav */}
@@ -430,7 +430,7 @@ const RealEstate = () => {
                     >
                         {/* Nouveau gradient de titre (Navy/Gold) */}
                         <span className={`bg-gradient-to-r from-white via-[#C8A779] to-[#C8A779] bg-clip-text text-transparent drop-shadow-lg`}>
-                            Bitcom Immobilière
+                            Azure Résidences
                         </span>
                     </motion.h1>
 
@@ -495,7 +495,7 @@ const RealEstate = () => {
                                 <div>
                                     <h3 className={`text-3xl font-bold mb-4 ${isDark ? 'text-[#C8A779]' : 'text-[#010133]'}`}>Une Résidence d'Exception</h3>
                                     <p className={`${isDark ? 'text-slate-300' : 'text-slate-700'} mb-4 leading-relaxed`}>
-                                        Bitcom Immobilière est le fruit d'une collaboration avec des architectes de renom, visant à créer un espace de vie alliant esthétisme, fonctionnalité et respect de l'environnement. Chaque détail a été pensé pour votre bien-être.
+                                        Azure Résidences est le fruit d'une collaboration avec des architectes de renom, visant à créer un espace de vie alliant esthétisme, fonctionnalité et respect de l'environnement. Chaque détail a été pensé pour votre bien-être.
                                     </p>
                                     <ul className={`space-y-3 ${isDark ? 'text-slate-400' : 'text-slate-600'} mt-6`}>
                                         <li className="flex items-center gap-2">
@@ -552,7 +552,7 @@ const RealEstate = () => {
             </Section >
 
             {/* Benefits */}
-            < Section id="benefits" title="Pourquoi Bitcom" isDark={isDark} >
+            < Section id="benefits" title="Pourquoi Azure Résidences" isDark={isDark} >
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {benefits.map((benefit, i) => (
@@ -588,7 +588,7 @@ const RealEstate = () => {
                                     +213 XXX XXX XXX
                                 </motion.a>
                                 <motion.a
-                                    href="mailto:contact@bitcom.dz"
+                                    href="mailto:contact@azure-residences.com"
                                     whileHover={{
                                         scale: 1.05,
                                         y: -3,
@@ -600,7 +600,7 @@ const RealEstate = () => {
                                     className={`flex items-center gap-2 px-6 py-3 ${isDark ? 'bg-[#C8A779]/15 border-[#C8A779]/50 text-[#C8A779]' : 'bg-[#010133]/15 border-[#010133]/60 text-[#010133]'} border-2 rounded-2xl font-semibold backdrop-blur-2xl transition-all duration-200 shadow-[0_8px_25px_rgba(0,0,0,0.2)]`}
                                 >
                                     <Mail className="w-4 h-4" />
-                                    contact@bitcom.dz
+                                    contact@azure-residences.com
                                 </motion.a>
                             </div>
 
@@ -627,7 +627,7 @@ const RealEstate = () => {
             < footer className="py-16 text-center relative z-10" >
                 <div className={`backdrop-blur-3xl ${isDark ? 'bg-gradient-to-r from-[#010133]/25 to-[#010133]/15 border-[#C8A779]/40' : 'bg-gradient-to-r from-white/25 to-[#f5f5f5]/15 border-[#010133]/40'} border rounded-2xl px-8 py-4 inline-block shadow-[0_8px_30px_rgba(0,0,0,0.25)]`}>
                     <p className={`${isDark ? 'text-slate-400' : 'text-slate-600'} text-sm`}>
-                        © 2025 Bitcom Immobilière • Tous droits réservés
+                        © 2025 Azure Résidences • Tous droits réservés
                     </p>
                 </div>
             </footer >
